@@ -1,3 +1,10 @@
+## Table of Contents
+- [Prerequisites](#prerequisites)
+- [Setting Project Name](#setting-project-name)
+- [Building](#building)
+- [Flashing](#flashing)
+- [Cleaning](#cleaning)
+
 ## Prerequisites
 Install the following packages:
 - `arm-none-eabi-gcc`

@@ -1,3 +1,11 @@
+# Table of Contents
+- [Layout](#layout)
+- [Components](#components)
+    - [GPIO](#gpio)
+        - [Mode 1](#gpio)
+    - [TIM](#tim)
+        - [Mode 1](#tim)
+
 # Layout
 This project is intended for learning ARM. Currenly no CMSIS or HAL library is used.
 
