@@ -43,8 +43,8 @@ SYSTICK_INIT:
     ldr     r2, [r3, #SYST_CSR]         // load the value of SYST_CSR
     orr     r2, #1<<SYST_CSR_TICKINT    // set bit 1 (TICKINT) to 1 (enable)
 
-    // Set SysTick clock source
-    // to processor clock (AHB clock)
+    // Set SysTick clock source to 
+    // processor clock (AHB clock)
     orr     r2, #1<<SYST_CSR_CLKSOURCE  // set bit 2 (TICKINT) to 1 (use processor clock)
 
     // Enable SysTick
