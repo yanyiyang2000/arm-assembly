@@ -22,7 +22,7 @@
 .word   PendSV_Handler
 .word   SysTick_Handler
 
-.word	WWDG_IRQHandler						// 0
+.word	WWDG_IRQHandler						// Interrupt 0 of ISER0
 .word	PVD_PVM_IRQHandler
 .word	RTC_TAMP_STAMP_CSS_LSE_IRQHandler
 .word	RTC_WKUP_IRQHandler
@@ -32,8 +32,8 @@
 .word	EXTI1_IRQHandler
 .word	EXTI2_IRQHandler
 .word	EXTI3_IRQHandler
-.word	EXTI4_IRQHandler					// 10
-.word	DMA1_CH1_IRQHandler					// 11
+.word	EXTI4_IRQHandler					// Interrupt 10
+.word	DMA1_CH1_IRQHandler					// Interrupt 11
 .word	DMA1_CH2_IRQHandler
 .word	DMA1_CH3_IRQHandler
 .word	DMA1_CH4_IRQHandler
@@ -42,7 +42,7 @@
 .word	DMA1_CH7_IRQHandler
 .word	ADC1_2_IRQHandler
 .word	CAN1_TX_IRQHandler
-.word	CAN1_RX0_IRQHandler					// 20
+.word	CAN1_RX0_IRQHandler					// Interrupt 20
 .word	CAN1_RX1_IRQHandler
 .word	CAN1_SCE_IRQHandler
 .word	EXTI9_5_IRQHandler
@@ -50,11 +50,11 @@
 .word	TIM1_UP_TIM16_IRQHandler
 .word	TIM1_TRG_COM_TIM17_IRQHandler
 .word	TIM1_CC_IRQHandler
-.word	TIM2_IRQHandler						// 28
+.word	TIM2_IRQHandler						// Interrupt 28
 .word	TIM3_IRQHandler
-.word	TIM4_IRQHandler						// 30
+.word	TIM4_IRQHandler						// Interrupt 30
 .word	I2C1_EV_IRQHandler
-.word	I2C1_ER_IRQHandler					// 0 for ISER1
+.word	I2C1_ER_IRQHandler					// Interrupt 0 of ISER1
 .word	I2C2_EV_IRQHandler
 .word	I2C2_ER_IRQHandler
 .word	SPI1_IRQHandler
@@ -64,7 +64,7 @@
 .word	USART3_IRQHandler
 .word	EXTI15_10_IRQHandler
 .word	RTC_Alarm_IRQHandler
-.word	DFSDM1_FLT3_IRQHandler				// 10
+.word	DFSDM1_FLT3_IRQHandler				// Interrupt 10
 .word	TIM8_BRK_IRQHandler
 .word	TIM8_UP_IRQHandler
 .word	TIM8_TRG_COM_IRQHandler
@@ -74,19 +74,19 @@
 .word	SDMMC1_IRQHandler
 .word	TIM5_IRQHandler
 .word	SPI3_IRQHandler
-.word	UART4_IRQHandler					// 20
+.word	UART4_IRQHandler					// Interrupt 20
 .word	UART5_IRQHandler
 .word	TIM6_DAC_IRQHandler
 .word	TIM7_IRQHandler
-.word	DMA2_CH1_IRQHandler					// 24
+.word	DMA2_CH1_IRQHandler					// Interrupt 24
 .word	DMA2_CH2_IRQHandler
 .word	DMA2_CH3_IRQHandler
 .word	DMA2_CH4_IRQHandler
 .word	DMA2_CH5_IRQHandler
 .word	DFSDM1_FLT0_IRQHandler
-.word	DFSDM1_FLT1_IRQHandler				// 30
+.word	DFSDM1_FLT1_IRQHandler				// Interrupt 30
 .word	DFSDM1_FLT2_IRQHandler
-.word	COMP_IRQHandler						// 0 for ISER2
+.word	COMP_IRQHandler						// Interrupt 0 of ISER2
 .word	LPTIM1_IRQHandler
 .word	LPTIM2_IRQHandler
 .word	OTG_FS_IRQHandler
@@ -96,7 +96,7 @@
 .word	QUADSPI_IRQHandler
 .word	I2C3_EV_IRQHandler
 .word	I2C3_ER_IRQHandler
-.word	SAI1_IRQHandler						// 10 for ISER2
+.word	SAI1_IRQHandler						// Interrupt 10 of ISER2
 .word	SAI2_IRQHandler
 .word	SWPMI1_IRQHandler
 .word	TSC_IRQHandler
