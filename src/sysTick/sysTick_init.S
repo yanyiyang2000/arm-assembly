@@ -58,12 +58,19 @@ SYSTICK_INIT:
 .global SysTick_Handler
 .thumb_func
 SysTick_Handler:
-    // Update SysTick_ms
-    movw    r3, #:lower16:SysTick_ms    // load the addr of SysTick_ms
+    // Load the addr of SysTick_ms
+    movw    r3, #:lower16:SysTick_ms    
     movt    r3, #:upper16:SysTick_ms    
-    ldr     r2, [r3]                    // load the value of SysTick_ms
-    add     r2, r2, #1                  // increment SysTick_ms by 1
-    str     r2, [r3]                    // update the value of SysTick_ms
+
+    // Update the lower word of SysTick_ms
+    ldr     r2, [r3]                    // load the lower 32 bits of SysTick_ms
+    adds    r2, r2, #1                  // increment the lower 32 bits of SysTick_ms by 1
+    str     r2, [r3]                    // update the lower 32 bits of SysTick_ms
+
+    // Update the upper word of SysTick_ms
+    ldr     r2, [r3, #4]                // load the upper 32 bits of SysTick_ms
+    adc     r2, r2, #0                  // increment the upper 32 bits of SysTick_ms by carry (if exists)
+    str     r2, [r3, #4]                // update the upper 32 bits of SysTick_ms
 
     // Return
     bx      lr
