@@ -8,7 +8,7 @@
 
 // The clock source of TIM2 is 4MHz
 // After pre-scaler TIM2 is 1kHz
-// Every 0.5 second TIM2 will toggle its output
+// Every 0.5 second TIM2 will toggle its output (TIM2_CH1)
 
 .global TIM2_INIT1
 TIM2_INIT1:
@@ -25,7 +25,7 @@ TIM2_INIT1:
     str     r2, [r3, #TIMx_CR1]                     // update the value of TIMx_CR1
 
     // Prescale the clock to 1kHz
-    mov     r2, #3999                               // 1ms / count
+    mov     r2, #1999                               // 1ms / count
     str     r2, [r3, #TIMx_PSC]                     // update the value of TIMx_PSC
 
     // Set maximum count of CNT to 1000
@@ -33,7 +33,7 @@ TIM2_INIT1:
     str     r2, [r3, #TIMx_ARR]                     // update the value of TIMx_ARR
 
     // Set maximum count of CC1 to 500
-    mov     r2, #499                                // 0.5s / slave cycle
+    mov     r2, #499
     str     r2, [r3, #TIMx_CCR1]                    // update the value of TIMx_CCR1
 
     // Select TIM2 capture/compare 1 as output

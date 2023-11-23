@@ -43,12 +43,6 @@ GPIOA_PIN5_INIT1:
     orr     r2, #0b10<<(2*GPIOx_OSPEEDR_OSPEED5)        // set bit 10-11 (OSPEED5) to 10 (high speed)
     str     r2, [r3, #GPIOx_OSPEEDR]                    // update the value of GPIOx_OSPEEDR
 
-    // Configure GPIO port A pin 5 pull up/pull down 
-    // as no pull up, pull down
-    @ ldr     r2, [r3, #GPIOx_PUPDR]                      // load the value of GPIOx_PUPDR
-    @ and     r2, #0b00<<(2*GPIOx_PUPDR_PUPD5)            // set bit 10-11 (PUPD5) to 00 (no pull up, pull down)
-    @ str     r2, [r3, #GPIOx_PUPDR]                      // update the value of GPIOx_PUPDR
-
     // Return
     bx      lr
     
