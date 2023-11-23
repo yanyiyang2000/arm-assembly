@@ -29,11 +29,8 @@ SYSTICK_INIT:
     ldr     r3, =SYST                   // load the base addr of SYST
     ldr     r2, [r3, #SYST_CSR]         // load the value of SYST_CSR
     and     r2, #0<<SYST_CSR_ENABLE     // set bit 0 (ENABLE) to 0 (disable)
-    
-    // Enable SysTick interrupt
-    orr     r2, #1<<SYST_CSR_TICKINT    // set bit 1 (TICKINT) to 1 (enable)
     str     r2, [r3, #SYST_CSR]         // update the value of SYST_CSR
-
+    
     // Set SysTick reload value
     mov     r2, #3999                   // 1ms / cycle
     str     r2, [r3, #SYST_RVR]         // update the value of SYST_RVR
@@ -42,8 +39,15 @@ SYSTICK_INIT:
     mov     r2, #0                      
     str     r2, [r3, #SYST_CVR]         // update the value of SYST_CVR
 
-    // Enable SysTick
+    // Enable SysTick interrupt
     ldr     r2, [r3, #SYST_CSR]         // load the value of SYST_CSR
+    orr     r2, #1<<SYST_CSR_TICKINT    // set bit 1 (TICKINT) to 1 (enable)
+
+    // Set SysTick clock source
+    // to processor clock (AHB clock)
+    orr     r2, #1<<SYST_CSR_CLKSOURCE  // set bit 2 (TICKINT) to 1 (use processor clock)
+
+    // Enable SysTick
     orr     r2, #1<<SYST_CSR_ENABLE     // set bit 0 (ENABLE) to 1 (enable)
     str     r2, [r3, #SYST_CSR]         // update the value of SYST_CSR
 
@@ -54,15 +58,12 @@ SYSTICK_INIT:
 .global SysTick_Handler
 .thumb_func
 SysTick_Handler:
-    // 
-    bkpt
-    
     // Update SysTick_ms
     movw    r3, #:lower16:SysTick_ms    // load the addr of SysTick_ms
     movt    r3, #:upper16:SysTick_ms    
     ldr     r2, [r3]                    // load the value of SysTick_ms
     add     r2, r2, #1                  // increment SysTick_ms by 1
-    ldr     r2, [r3]                    // update the value of SysTick_ms
+    str     r2, [r3]                    // update the value of SysTick_ms
 
     // Return
     bx      lr
