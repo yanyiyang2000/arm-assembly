@@ -33,10 +33,10 @@ TIM2_INIT1:
     str     r2, [r3, #TIMx_ARR]                     // update the value of TIMx_ARR
 
     // Set maximum count of CC1 to 500
-    mov     r2, #499
+    mov     r2, #499                                // 0.5s / slave cycle
     str     r2, [r3, #TIMx_CCR1]                    // update the value of TIMx_CCR1
 
-    // Select TIM2 capture/compare 1 as output
+    // Configure TIM2 capture/compare 1 as output
     ldr     r2, [r3, #TIMx_CCMR1]                   // load the value of TIMx_CCMR1
     and     r2, #0b00<<TIMx_CCMR1_CC1S              // set bit 0-1 (CC1S) to 00 (output)
     str     r2, [r3, #TIMx_CCMR1]                   // update the value of TIMx_CCMR1

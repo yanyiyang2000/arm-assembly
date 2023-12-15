@@ -14,7 +14,14 @@ SysTick_ms:
 
 .text
 
-// 4MHz MSI clock is used as system clock after reset
+// Reference: STMicroelectronics RM0351
+
+// THe 4MHz MSI clock is used as system clock (SYSCLK) after reset [RM0351, P.205]
+// The HCLK has the same frequency as the SYSCLK after reset [RM0351, P.208]
+
+// SysTick has two clock source [RM0351, P.207]
+//  External clock:  HCLK/8 (5kHz)
+//  Processor clock: HCLK   (4MHz)
 
 .global SYSTICK_INIT
 .thumb_func
@@ -44,7 +51,7 @@ SYSTICK_INIT:
     orr     r2, #1<<SYST_CSR_TICKINT    // set bit 1 (TICKINT) to 1 (enable)
 
     // Set SysTick clock source to 
-    // processor clock (AHB clock)
+    // processor clock (HCLK)
     orr     r2, #1<<SYST_CSR_CLKSOURCE  // set bit 2 (TICKINT) to 1 (use processor clock)
 
     // Enable SysTick
