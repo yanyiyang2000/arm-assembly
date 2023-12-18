@@ -9,7 +9,7 @@
 .global Reset_Handler
 .thumb_func
 Reset_Handler:
-    bl      main			// this can be changed to any function entry
+    bl      main				// this can be changed to any function entry
 	b       .
 
 
