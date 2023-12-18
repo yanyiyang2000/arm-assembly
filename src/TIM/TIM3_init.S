@@ -7,9 +7,14 @@
 
 .text
 
-// The clock source of TIM6 is 4MHz
-// After pre-scaler TIM6 is 1kHz
-// Every 10 seconds TIM2 will generate an interrupt
+// Reference: STMicroelectronics RM0351
+
+// Demo for TIM3 interrupt
+
+// The clock source of TIM3 is PCLK (4MHz)
+// After the pre-scaler TIM3 is 1kHz
+
+// Every 10 seconds TIM3 will generate an interrupt
 
 .global TIM3_init
 .thumb_func
