@@ -1,6 +1,6 @@
 // Reference: ARM v7-M Architecture Reference Manual [ARM DDI 0403D]
 
-.equ SYST,                  0xE000E010      // Base addr of SYST [B3-708]
+.equ SYST,                  0xE000E010      // Base address of SYST [B3-708]
 
 .equ SYST_CSR,              0x00            // Offset of SYST_CSR relative to SYST [B3-745]
 .equ SYST_CSR_ENABLE,       0               // SysTick enable is           bit 0 of SYST_CSR
