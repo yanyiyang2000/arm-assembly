@@ -13,5 +13,5 @@
 
 .equ RCC_APB1ENR1,          0x58            // Offset of APB1 peripheral clock enable register 1 relative to RCC
 .equ RCC_APB1ENR1_TIM2EN,   0               // TIM2 clock enable is bit 0 of RCC_APB1ENR1
-.equ RCC_APB1ENR1_TIM6EN,   4               // TIM6 clock enable is bit 4 of RCC_APB1ENR1
+.equ RCC_APB1ENR1_TIM3EN,   1               // TIM3 clock enable is bit 4 of RCC_APB1ENR1
 .equ RCC_APB1ENR1_DAC1EN,   29              // DAC1 clock enable is bit 29 of RCC_APB1ENR1

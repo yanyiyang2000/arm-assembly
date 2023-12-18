@@ -52,7 +52,7 @@ Default_Handler:
 .word	EXTI2_IRQHandler
 .word	EXTI3_IRQHandler
 .word	EXTI4_IRQHandler					// Interrupt 10
-.word	DMA1_CH1_IRQHandler					// Interrupt 11
+.word	DMA1_CH1_IRQHandler
 .word	DMA1_CH2_IRQHandler
 .word	DMA1_CH3_IRQHandler
 .word	DMA1_CH4_IRQHandler
@@ -70,8 +70,8 @@ Default_Handler:
 .word	TIM1_TRG_COM_TIM17_IRQHandler
 .word	TIM1_CC_IRQHandler
 .word	TIM2_IRQHandler						// Interrupt 28
-.word	TIM3_IRQHandler
-.word	TIM4_IRQHandler						// Interrupt 30
+.word	TIM3_IRQHandler						// Interrupt 29
+.word	TIM4_IRQHandler
 .word	I2C1_EV_IRQHandler
 .word	I2C1_ER_IRQHandler					// Interrupt 0 of ISER1
 .word	I2C2_EV_IRQHandler
@@ -97,7 +97,7 @@ Default_Handler:
 .word	UART5_IRQHandler
 .word	TIM6_DAC_IRQHandler
 .word	TIM7_IRQHandler
-.word	DMA2_CH1_IRQHandler					// Interrupt 24
+.word	DMA2_CH1_IRQHandler
 .word	DMA2_CH2_IRQHandler
 .word	DMA2_CH3_IRQHandler
 .word	DMA2_CH4_IRQHandler

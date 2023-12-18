@@ -30,7 +30,7 @@ TIM2_init:
     orr     r2, #1<<TIMx_CR1_ARPE                   // set bit 7 (ARPE) to 1 (buffered)
     str     r2, [r3, #TIMx_CR1]                     // update the value of TIMx_CR1
 
-    // Prescale the clock to 1kHz
+    // Prescale TIM2 to 1kHz
     mov     r2, #3999                               // 1ms / count
     str     r2, [r3, #TIMx_PSC]                     // update the value of TIMx_PSC
 
@@ -53,10 +53,10 @@ TIM2_init:
     str     r2, [r3, #TIMx_CCMR1]                   // update the value of TIMx_CCMR1
 
     // Generate an artificial update event to 
-    // transfer value in ARR into the shadow register. 
-    // Otherwise the value in the shadow register 
-    // would not be updated with 999 until the 
-    // current count overflows. [RM0351, P.1018]
+    // update ARR shadow register. Otherwise the 
+    // value in the shadow register would not be 
+    // updated with 999 until the current count 
+    // overflows. [RM0351, P.1018]
     ldr     r2, [r3, #TIMx_EGR]                     // load the value of TIMx_EGR
     orr     r2, #1<<TIMx_EGR_UG                     // set bit 0 (UG) to 1 (generate update)
     str     r2, [r3, #TIMx_EGR]                     // update the value of TIMx_EGR

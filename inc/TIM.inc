@@ -1,7 +1,7 @@
 // Reference: STMicroelectronics RM0351
 
 .equ TIM2,                  0x40000000          // Base address of TIM2 [RM0351, P.82]
-.equ TIM6,                  0x40001000          // Base address of TIM6 [RM0351, P.82]
+.equ TIM3,                  0x40000400          // Base address of TIM3 [RM0351, P.82]
 
 .equ TIMx_PSC,              0x28                // Offset of TIMx_PSC relative to TIMx
 .equ TIMx_ARR,              0x2C                // Offset of TIMx_ARR relative to TIMx
