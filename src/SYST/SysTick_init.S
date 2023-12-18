@@ -1,8 +1,8 @@
 .syntax unified
 .thumb
 
-.include "scb.inc"
-.include "syst.inc"
+.include "SCB.inc"
+.include "SYST.inc"
 
 
 .data

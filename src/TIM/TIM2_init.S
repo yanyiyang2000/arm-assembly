@@ -1,8 +1,8 @@
 .syntax unified
 .thumb
 
-.include "rcc.inc"
-.include "tim.inc"
+.include "RCC.inc"
+.include "TIM.inc"
 
 .text
 

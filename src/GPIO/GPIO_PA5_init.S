@@ -1,8 +1,8 @@
 .syntax unified
 .thumb
 
-.include "rcc.inc"
-.include "gpio.inc"
+.include "RCC.inc"
+.include "GPIO.inc"
 
 .text
 
