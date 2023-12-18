@@ -46,3 +46,8 @@ In the `build` directory, use the following command to view the dieassembly code
 ```bash
 arm-none-eabi-objdump -d -s <PROJECT_NAME>.elf
 ```
+
+In the `build` directory, use the following command to view the output information:
+```bash
+arm-none-eabi-readelf -S <PROJECT_NAME>.elf
+```
