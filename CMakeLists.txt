@@ -1,5 +1,8 @@
 cmake_minimum_required(VERSION 3.22)
 
+# for cross-compiling toolchains
+set(CMAKE_TRY_COMPILE_TARGET_TYPE "STATIC_LIBRARY")
+
 set(CMAKE_ASM_COMPILER "/usr/bin/arm-none-eabi-gcc")
 set(CMAKE_C_COMPILER "/usr/bin/arm-none-eabi-gcc")
 
@@ -8,7 +11,7 @@ set(CMAKE_EXECUTABLE_SUFFIX_C .elf)
 
 project(
     test
-    LANGUAGES ASM
+    LANGUAGES C ASM
 )
 
 add_compile_options(
@@ -16,6 +19,7 @@ add_compile_options(
     -mfpu=fpv4-sp-d16
     -mthumb
     -mfloat-abi=hard
+    -Wno-implicit-function-declaration
 )
 
 add_link_options(
@@ -27,9 +31,9 @@ add_subdirectory(src/sysTick)
 add_subdirectory(src/gpio)
 add_subdirectory(src/tim)
 
-add_executable(${PROJECT_NAME} main.S startup.S)
+add_executable(${PROJECT_NAME} main.c startup.S)
 
-# components needed by main.S and startup.S
+# components needed by main.c and startup.S
 target_link_libraries(
     ${PROJECT_NAME}
     PUBLIC
@@ -38,7 +42,7 @@ target_link_libraries(
     tim_init
 )
 
-# includes needed by main.S and startup.S
+# includes needed by main.c and startup.S
 target_include_directories(
     ${PROJECT_NAME}
     PUBLIC

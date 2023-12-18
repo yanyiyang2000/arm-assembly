@@ -4,6 +4,7 @@
 - [Building](#building)
 - [Flashing](#flashing)
 - [Cleaning](#cleaning)
+- [Tools](#tools)
 
 ## Prerequisites
 Install the following packages:
@@ -15,8 +16,8 @@ Install the following packages:
 In the root directory, modify the following entry in `CMakeLists.txt`:
 ```cmake
 project(
-    <YOUR_PROJECT_NAME>
-    LANGUAGES ASM
+    <PROJECT_NAME>
+    LANGUAGES C ASM
 )
 ```
 
@@ -31,11 +32,17 @@ make
 ## Flashing
 In the `build` directory, use the following command:
 ```bash
-openocd -f interface/stlink.cfg -f target/stm32l4x.cfg -c "program <YOUR_PROJECT_NAME>.elf verify reset exit"
+openocd -f interface/stlink.cfg -f target/stm32l4x.cfg -c "program <PROJECT_NAME>.elf verify reset exit"
 ```
 
 ## Cleaning
 In the `build` directory, use the following command:
 ```bash
 rm -rf *
+```
+
+## Tools
+In the `build` directory, use the following command to view the dieassembly code:
+```bash
+arm-none-eabi-objdump -d -s <PROJECT_NAME>.elf
 ```
