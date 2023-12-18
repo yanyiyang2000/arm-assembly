@@ -37,7 +37,7 @@ GPIOA_PIN5_INIT1:
     // Configure GPIO port A pin 5 output type 
     // as push-pull
     ldr     r2, [r3, #GPIOx_OTYPER]                     // load the value of GPIOx_OTYPER
-    and     r2, #0<<GPIOx_OTYPER_OT5                    // set bit 5 (OT5) to 0 (push pull)
+    and     r2, #0<<GPIOx_OTYPER_OT5                    // set bit 5 (OT5) to 0 (push-pull)
     str     r2, [r3, #GPIOx_OTYPER]                     // update the value of GPIOx_OTYPER
 
     // Configure GPIO port A pin 5 output speed 

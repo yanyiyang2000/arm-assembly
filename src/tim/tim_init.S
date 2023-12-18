@@ -7,7 +7,7 @@
 .text
 
 // The clock source of TIM2 is 4MHz
-// After pre-scaler TIM2 is 1kHz
+// After the pre-scaler TIM2 is 1kHz
 // Every 0.5 second TIM2 will toggle its output (TIM2_CH1)
 
 .global TIM2_INIT1
