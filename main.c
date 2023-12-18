@@ -1,5 +1,5 @@
 int main() {
-	SYSTICK_INIT();
-    GPIOA_PIN5_INIT1();
-    TIM2_INIT1();
+	SysTick_init();
+    GPIO_PA5_init();
+    TIM2_init();
 }

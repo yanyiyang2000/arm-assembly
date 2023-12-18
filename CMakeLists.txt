@@ -27,9 +27,9 @@ add_link_options(
     -T "${CMAKE_SOURCE_DIR}/config/stm32l476.ld"
 )
 
-add_subdirectory(src/sysTick)
-add_subdirectory(src/gpio)
-add_subdirectory(src/tim)
+add_subdirectory(src/SYST)
+add_subdirectory(src/GPIO)
+add_subdirectory(src/TIM)
 
 add_executable(${PROJECT_NAME} main.c startup.S)
 
@@ -37,9 +37,9 @@ add_executable(${PROJECT_NAME} main.c startup.S)
 target_link_libraries(
     ${PROJECT_NAME}
     PUBLIC
-    sysTick_init
-    gpio_init
-    tim_init
+    SYST
+    GPIO
+    TIM
 )
 
 # includes needed by main.c and startup.S
