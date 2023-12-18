@@ -1,8 +1,8 @@
 _Stack_Size = 0x400;
 
 MEMORY {
-	FLASH :	ORIGIN = 0x8000000,	 LENGTH = 128K
-	RAM  :	ORIGIN = 0x20000000, LENGTH = 20K
+	FLASH :	ORIGIN = 0x8000000,	 LENGTH = 1024K
+	SRAM1 :	ORIGIN = 0x20000000, LENGTH = 96K
 }
 
 SECTIONS {
@@ -32,7 +32,7 @@ SECTIONS {
 		*(.bss.*)
 		. = ALIGN(4);
 		_ebss = .;
-	} > RAM
+	} > SRAM1
 
 
 	.data : AT (ADDR(.rodata) + SIZEOF(.rodata)) {
@@ -41,7 +41,7 @@ SECTIONS {
 		*(.data.*)
 		. = ALIGN(4);
 		_edata = .;
-	} > RAM
+	} > SRAM1
 	
 
 	/* .data (NOLOAD) : {
@@ -49,5 +49,5 @@ SECTIONS {
 		_sdata = .;
 		*(.data)
 		*(.data.*)
-	} > RAM */
+	} > SRAM1 */
 }
