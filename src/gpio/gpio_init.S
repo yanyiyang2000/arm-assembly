@@ -6,7 +6,7 @@
 
 .text
 
-// GPIO port A pin 5 (PA5) is configured as follow:
+// GPIO port A pin 5 (PA5) is configured as follows:
 // 1. Alternate function mode (connected to TIM2_CH1)
 // 2. push-pull, high speed output
 

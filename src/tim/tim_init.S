@@ -6,9 +6,15 @@
 
 .text
 
-// The clock source of TIM2 is 4MHz
+// Reference: STMicroelectronics RM0351
+
+// Demo for TIM2 PWM mode
+
+// The clock source of TIM2 is PCLK (4MHz)
 // After the pre-scaler TIM2 is 1kHz
-// Every 0.5 second TIM2 will toggle its output (TIM2_CH1)
+
+// When TIM2_CNT < TIM2_CCR1, TIM2_CH1 outputs high
+// When TIM2_CNT > TIM2_CCR1, TIM2_CH1 outputs low
 
 .global TIM2_INIT1
 TIM2_INIT1:
@@ -25,14 +31,14 @@ TIM2_INIT1:
     str     r2, [r3, #TIMx_CR1]                     // update the value of TIMx_CR1
 
     // Prescale the clock to 1kHz
-    mov     r2, #1999                               // 1ms / count
+    mov     r2, #3999                               // 1ms / count
     str     r2, [r3, #TIMx_PSC]                     // update the value of TIMx_PSC
 
-    // Set maximum count of CNT to 1000
+    // Set value of TIM2_CNT to 1000
     mov     r2, #999                                // 1s / master cycle
     str     r2, [r3, #TIMx_ARR]                     // update the value of TIMx_ARR
 
-    // Set maximum count of CC1 to 500
+    // Set value of TIM2_CCR1 to 500
     mov     r2, #499                                // 0.5s / slave cycle
     str     r2, [r3, #TIMx_CCR1]                    // update the value of TIMx_CCR1
 
@@ -41,9 +47,9 @@ TIM2_INIT1:
     and     r2, #0b00<<TIMx_CCMR1_CC1S              // set bit 0-1 (CC1S) to 00 (output)
     str     r2, [r3, #TIMx_CCMR1]                   // update the value of TIMx_CCMR1
 
-    // Set TIM2 capture/compare 1 mode to toggle
+    // Set TIM2 capture/compare 1 mode to PWM mode 1
     bic     r2, r2, #0b111<<TIMx_CCMR1_OC1M         // clear bit 4-6 (OC1M) of TIMx_CCMR1
-    orr     r2, #0b011<<TIMx_CCMR1_OC1M             // set bit 4-6 (OC1M) to 011 (toggle)
+    orr     r2, #0b110<<TIMx_CCMR1_OC1M             // set bit 4-6 (OC1M) to 110 (PWM mode 1)
     str     r2, [r3, #TIMx_CCMR1]                   // update the value of TIMx_CCMR1
 
     // Generate an artificial update event to 
