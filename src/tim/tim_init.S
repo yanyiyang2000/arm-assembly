@@ -53,9 +53,10 @@ TIM2_INIT1:
     str     r2, [r3, #TIMx_CCMR1]                   // update the value of TIMx_CCMR1
 
     // Generate an artificial update event to 
-    // update value in ARR from ARR preload register. 
-    // Otherwise the value in ARR would not be updated 
-    // with 999 until the current count overflows.
+    // transfer value in ARR into the shadow register. 
+    // Otherwise the value in the shadow register 
+    // would not be updated with 999 until the 
+    // current count overflows. [RM0351, P.1018]
     ldr     r2, [r3, #TIMx_EGR]                     // load the value of TIMx_EGR
     orr     r2, #1<<TIMx_EGR_UG                     // set bit 0 (UG) to 1 (generate update)
     str     r2, [r3, #TIMx_EGR]                     // update the value of TIMx_EGR

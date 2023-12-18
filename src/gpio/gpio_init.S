@@ -6,6 +6,8 @@
 
 .text
 
+// Reference: STMicroelectronics DS10198
+
 // GPIO port A pin 5 (PA5) is configured as follows:
 // 1. Alternate function mode (connected to TIM2_CH1)
 // 2. push-pull, high speed output
@@ -27,8 +29,8 @@ GPIOA_PIN5_INIT1:
     orr     r2, #0b10<<(2*GPIOx_MODER_MODE5)            // set bit 10-11 (MODE5) to 10 (alternate function mode)
     str     r2, [r3, #GPIOx_MODER]                      // update the value of GPIOx_MODER
 
-    // Configure GPIO port A pin 5 alternate function 
-    // as TIM2_CH1 [STMicroelectronics DS10198, P.92]
+    // Configure GPIO port A pin 5 alternate function
+    // as TIM2_CH1 [DS10198, P.92]
     ldr     r2, [r3, #GPIOx_AFPR]                       // load the value of GPIOx_AFPR
     bic     r2, r2, #0b1111<<(4*GPIOx_AFPR_AFSEL5)      // clear bit 20-23 (AFSEL5) of GPIOx_AFPR
     orr     r2, #0b0001<<(4*GPIOx_AFPR_AFSEL5)          // set bit 20-23 (AFSEL5) to 0001 (AF1)
