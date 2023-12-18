@@ -2,6 +2,25 @@
 .cpu    cortex-m3
 .thumb
 
+
+.text
+
+.type Reset_Handler, %function
+.global Reset_Handler
+.thumb_func
+Reset_Handler:
+    bl      main			// this can be changed to any function entry
+	b       .
+
+
+.type Default_Handler, %function
+.global Default_Handler
+.thumb_func
+Default_Handler:
+	bkpt						// breakpoint, stop here!
+	b		Default_Handler
+
+
 /* ISR (Vector) table of STM32L47x [RM0351, P.396] */
 .section .isr_vector, "a"                   // make a section for ISR table for debugging purpose
 
@@ -377,23 +396,4 @@
 
 .weak	FPU_IRQHandler
 .thumb_set FPU_IRQHandler,Default_Handler
-
-
-
-
-.text
-
-.type Reset_Handler, %function
-.global Reset_Handler
-.thumb_func
-Reset_Handler:
-    bl      System_Init			// this can be changed to any function entry
-
-
-.type Default_Handler, %function
-.global Default_Handler
-.thumb_func
-Default_Handler:
-	bkpt						// breakpoint, stop here!
-	b		Default_Handler
     
