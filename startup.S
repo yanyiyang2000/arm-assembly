@@ -17,7 +17,8 @@ Reset_Handler:
 	mov		r3, #0			// number of data copied
 	b		2f
 
-	// Copy .data section from FLASH to SRAM1
+	// Copy .data section 
+	// from FLASH to SRAM1
 1:
 	ldr 	r4, [r2, r3]	// load the data from FLASH
 	str 	r4, [r0, r3]	// store the data into SRAM1
@@ -26,7 +27,8 @@ Reset_Handler:
 	cmp  	r3, r1			// check if all data is copied
 	bcc		1b				// 	no
 
-	// Fill .bss section in SRAM1 with zeros
+	// Fill .bss section 
+	// in SRAM1 with zeros
 	ldr		r0, =_sbss		// start addr of .bss section in SRAM1
 	ldr		r1, =_ebss		// end addr of .bss section in SRAM1
 	mov		r2, #0
@@ -35,7 +37,8 @@ Reset_Handler:
 	cmp		r0, r1			// check if all zeros are filled
 	bcc		1b				//  no
 
-	// Call main or any other functions
+	// Call main or any 
+	// other functions
     bl      main
 	b       .
 
@@ -48,9 +51,15 @@ Default_Handler:
 
 
 /* STM32L47x vector table [RM0351, P.396] */
-.section .vectors, "a"                   	// make a section for vector table for debugging purpose
+.section .vectors, "a"
 
-.word   _estack                          	// initial stack pointer, defined in the linker script
+// Cortex-M uses full descending stack, 
+// this means the initial stack pointer 
+// is the highest stack address defined
+// in the linker script.
+.word   _estack
+
+/* Exceptions */
 .word	Reset_Handler
 .word	NMI_Handler
 .word	HardFault_Handler
@@ -67,6 +76,7 @@ Default_Handler:
 .word   PendSV_Handler
 .word   SysTick_Handler
 
+/* Interrupts */
 .word	WWDG_IRQHandler						// Interrupt 0 of ISER0
 .word	PVD_PVM_IRQHandler
 .word	RTC_TAMP_STAMP_CSS_LSE_IRQHandler

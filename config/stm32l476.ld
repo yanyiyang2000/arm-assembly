@@ -55,10 +55,6 @@ SECTIONS {
 	} > SRAM1
 
 
-	/* 
-	 * Cortex-M uses a full descending stack. This means the 
-	 * initial stack pointer holds the highest address.
-	 */
 	.stack : {
 		. = ALIGN(8);
     	_sstack = .;
