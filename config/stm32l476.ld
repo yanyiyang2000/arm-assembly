@@ -27,16 +27,6 @@ SECTIONS {
 	} > FLASH
 
 
-	.bss (NOLOAD) : {
-		. = ALIGN(4);
-		_sbss = .;
-		*(.bss)
-		*(.bss.*)
-		. = ALIGN(4);
-		_ebss = .;
-	} > SRAM1
-
-
 	/* 
 	 * The load address of .data is in FLASH after .rodata section.
 	 * The relocation address of .data is in SRAM1 after .bss section.
@@ -48,5 +38,18 @@ SECTIONS {
 		*(.data.*)
 		. = ALIGN(4);
 		_edata = .;
+	} > SRAM1
+
+	/* Load address of .data */
+	_sidata = LOADADDR(.data);
+
+
+	.bss (NOLOAD) : {
+		. = ALIGN(4);
+		_sbss = .;
+		*(.bss)
+		*(.bss.*)
+		. = ALIGN(4);
+		_ebss = .;
 	} > SRAM1
 }

@@ -9,7 +9,34 @@
 .global Reset_Handler
 .thumb_func
 Reset_Handler:
-    bl      main				// this can be changed to any function entry
+	ldr		r0, =_sdata		// start addr of .data section in SRAM1
+	ldr		r1, =_edata		// end addr of .data section in SRAM1
+	ldr  	r2, =_sidata	// start addr of .data section in FLASH
+
+	sub		r1, r1, r0		// total number of data in bytes
+	mov		r3, #0			// number of data copied
+	b		2f
+
+	// Copy .data section from FLASH to SRAM1
+1:
+	ldr 	r4, [r2, r3]	// load the data from FLASH
+	str 	r4, [r0, r3]	// store the data into SRAM1
+	adds 	r3, r3, #4		// increment number of data copied
+2:
+	cmp  	r3, r1			// check if all data is copied
+	bcc		1b				// 	no
+
+	// Fill .bss section in SRAM1 with zeros
+	ldr		r0, =_sbss		// start addr of .bss section in SRAM1
+	ldr		r1, =_ebss		// end addr of .bss section in SRAM1
+	mov		r2, #0
+1:
+	str		r2, [r0], #4
+	cmp		r0, r1			// check if all zeros are filled
+	bcc		1b				//  no
+
+	// Call main or any other functions
+    bl      main
 	b       .
 
 
@@ -17,7 +44,6 @@ Reset_Handler:
 .global Default_Handler
 .thumb_func
 Default_Handler:
-	bkpt						// breakpoint, stop here!
 	b		Default_Handler
 
 
