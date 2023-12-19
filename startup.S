@@ -11,7 +11,7 @@
 Reset_Handler:
 	ldr		r0, =_sdata		// start addr of .data section in SRAM1
 	ldr		r1, =_edata		// end addr of .data section in SRAM1
-	ldr  	r2, =_sidata	// start addr of .data section in FLASH
+	ldr		r2, =_sidata	// start addr of .data section in FLASH
 
 	sub		r1, r1, r0		// total number of data in bytes
 	mov		r3, #0			// number of data copied
@@ -20,12 +20,12 @@ Reset_Handler:
 	// Copy .data section 
 	// from FLASH to SRAM1
 1:
-	ldr 	r4, [r2, r3]	// load the data from FLASH
-	str 	r4, [r0, r3]	// store the data into SRAM1
-	adds 	r3, r3, #4		// increment number of data copied
+	ldr		r4, [r2, r3]	// load the data from FLASH
+	str		r4, [r0, r3]	// store the data into SRAM1
+	adds	r3, r3, #4		// increment number of data copied
 2:
-	cmp  	r3, r1			// check if all data is copied
-	bcc		1b				// 	no
+	cmp		r3, r1			// check if all data is copied
+	bcc		1b				//  no
 
 	// Fill .bss section 
 	// in SRAM1 with zeros
