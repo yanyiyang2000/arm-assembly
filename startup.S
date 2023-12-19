@@ -12,8 +12,7 @@ Reset_Handler:
 	ldr		r0, =_sdata		// start addr of .data section in SRAM1
 	ldr		r1, =_edata		// end addr of .data section in SRAM1
 	ldr		r2, =_sidata	// start addr of .data section in FLASH
-
-	sub		r1, r1, r0		// total number of data in bytes
+	sub		r1, r1, r0		// total number of data to be copied in bytes
 	mov		r3, #0			// number of data copied
 	b		2f
 
