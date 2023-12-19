@@ -3,8 +3,8 @@ _Stack_Size = 0x400;
 ENTRY(Reset_Handler)
 
 MEMORY {
-	FLASH :	ORIGIN = 0x8000000,	 LENGTH = 1024K
-	SRAM1 :	ORIGIN = 0x20000000, LENGTH = 96K
+	FLASH (xr)  : ORIGIN = 0x8000000,  LENGTH = 1024K
+	SRAM1 (xrw) : ORIGIN = 0x20000000, LENGTH = 96K
 }
 
 SECTIONS {
@@ -27,7 +27,7 @@ SECTIONS {
 	} > FLASH
 
 
-	.bss : {
+	.bss (NOLOAD) : {
 		. = ALIGN(4);
 		_sbss = .;
 		*(.bss)
@@ -37,19 +37,16 @@ SECTIONS {
 	} > SRAM1
 
 
+	/* 
+	 * The load address of .data is in FLASH after .rodata section.
+	 * The relocation address of .data is in SRAM1 after .bss section.
+	 */
 	.data : AT (ADDR(.rodata) + SIZEOF(.rodata)) {
-		_sdata = . + _Stack_Size;
+		. = ALIGN(4);
+		_sdata = .;
 		*(.data)
 		*(.data.*)
 		. = ALIGN(4);
 		_edata = .;
 	} > SRAM1
-	
-
-	/* .data (NOLOAD) : {
-		. = . + _Stack_Size;
-		_sdata = .;
-		*(.data)
-		*(.data.*)
-	} > SRAM1 */
 }
