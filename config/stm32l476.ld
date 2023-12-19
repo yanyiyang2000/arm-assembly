@@ -67,6 +67,7 @@ SECTIONS {
     	_estack = .;
 	}
 
+
 	.heap : {
 		. = ALIGN(8);
 		_sheap = .;
