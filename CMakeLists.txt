@@ -24,6 +24,7 @@ add_compile_options(
     -Wall
     -Wno-implicit-function-declaration
     -ffunction-sections
+    -fdata-sections
 )
 
 add_link_options(
