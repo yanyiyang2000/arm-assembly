@@ -19,11 +19,16 @@ add_compile_options(
     -mfpu=fpv4-sp-d16
     -mthumb
     -mfloat-abi=hard
+    -O0
+    -g3
+    -Wall
     -Wno-implicit-function-declaration
+    -ffunction-sections
 )
 
 add_link_options(
     -nostdlib
+    -Wl,--gc-sections
     -T "${CMAKE_SOURCE_DIR}/config/stm32l476.ld"
 )
 
