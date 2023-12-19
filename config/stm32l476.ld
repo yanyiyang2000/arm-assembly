@@ -1,12 +1,14 @@
 _Stack_Size = 0x400;
 
+ENTRY(Reset_Handler)
+
 MEMORY {
 	FLASH :	ORIGIN = 0x8000000,	 LENGTH = 1024K
 	SRAM1 :	ORIGIN = 0x20000000, LENGTH = 96K
 }
 
 SECTIONS {
-	.isr_vector : {
+	.vectors : {
 		KEEP(*(.isr_vector))
 	} > FLASH
 

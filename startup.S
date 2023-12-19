@@ -21,8 +21,8 @@ Default_Handler:
 	b		Default_Handler
 
 
-/* ISR (Vector) table of STM32L47x [RM0351, P.396] */
-.section .isr_vector, "a"                   // make a section for ISR table for debugging purpose
+/* STM32L47x vector table [RM0351, P.396] */
+.section .vectors, "a"                   	// make a section for vector table for debugging purpose
 
 .word   _sdata                          	// first available address after stack, defined in the linker script
 .word	Reset_Handler                       // first available address after ISR table
