@@ -1,4 +1,5 @@
 _Stack_Size = 0x400;
+_Heap_Size = 0x0;
 
 ENTRY(Reset_Handler)
 
@@ -9,7 +10,7 @@ MEMORY {
 
 SECTIONS {
 	.vectors : {
-		KEEP(*(.isr_vector))
+		KEEP(*(.vectors))
 	} > FLASH
 
 
@@ -52,4 +53,25 @@ SECTIONS {
 		. = ALIGN(4);
 		_ebss = .;
 	} > SRAM1
+
+
+	/* 
+	 * Cortex-M uses a full descending stack. This means the 
+	 * initial stack pointer holds the highest address.
+	 */
+	.stack : {
+		. = ALIGN(8);
+    	_sstack = .;
+    	. = . + _Stack_Size;
+    	. = ALIGN(8);
+    	_estack = .;
+	}
+
+	.heap : {
+		. = ALIGN(8);
+		_sheap = .;
+		. = . + _Heap_Size;
+		. = ALIGN(8);
+    	_eheap = .;
+	}
 }
