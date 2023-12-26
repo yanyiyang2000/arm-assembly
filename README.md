@@ -13,7 +13,7 @@ Install the following packages:
 - `openocd`
 
 ## Setting Project Name
-In the root directory, modify the following entry in `CMakeLists.txt`:
+In the project root directory, modify the following entry in `CMakeLists.txt`:
 ```cmake
 project(
     <PROJECT_NAME>
@@ -22,7 +22,7 @@ project(
 ```
 
 ## Building
-In the root directory, use the following commands one by one:
+In the project root directory, use the following commands one by one:
 ```bash
 cmake -B build
 cmake --build build
