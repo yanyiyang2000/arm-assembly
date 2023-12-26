@@ -8,7 +8,7 @@
 
 ## Prerequisites
 Install the following packages:
-- `arm-none-eabi-gcc`
+- `gcc-arm-none-eabi`
 - `gdb-multiarch`
 - `openocd`
 

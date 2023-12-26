@@ -19,7 +19,7 @@ SysTick_ms:
 // THe 4MHz MSI clock is used as system clock (SYSCLK) after reset [RM0351, P.205]
 // The HCLK has the same frequency as the SYSCLK after reset [RM0351, P.208]
 
-// SysTick has two clock source [RM0351, P.207]
+// SysTick has two clock sources [RM0351, P.207]
 //  External clock:  HCLK/8 (5kHz)
 //  Processor clock: HCLK   (4MHz)
 
@@ -32,7 +32,7 @@ SysTick_init:
     orr     r2, #0x80<<SCB_SHPR3_PRI15  // set bit 24-31 (PRI15) to 0x80 (medium priority)
     str     r2, [r3, #SCB_SHPR3]        // update the value of SCB_SHPR3
 
-    // Disable SysTick
+    // Disable SysTick counter
     ldr     r3, =SYST                   // load the base addr of SYST
     ldr     r2, [r3, #SYST_CSR]         // load the value of SYST_CSR
     and     r2, #0<<SYST_CSR_ENABLE     // set bit 0 (ENABLE) to 0 (disable)
@@ -54,7 +54,7 @@ SysTick_init:
     // processor clock (HCLK)
     orr     r2, #1<<SYST_CSR_CLKSOURCE  // set bit 2 (TICKINT) to 1 (use processor clock)
 
-    // Enable SysTick
+    // Enable SysTick counter
     orr     r2, #1<<SYST_CSR_ENABLE     // set bit 0 (ENABLE) to 1 (enable)
     str     r2, [r3, #SYST_CSR]         // update the value of SYST_CSR
 
