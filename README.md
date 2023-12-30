@@ -50,3 +50,8 @@ In the `build` directory, use the following command to view the output informati
 ```bash
 arm-none-eabi-readelf -S <PROJECT_NAME>.elf
 ```
+
+In the `build` directory, use the following command to view the size of the executable:
+```bash
+arm-none-eabi-size <PROJECT_NAME>.elf
+```
